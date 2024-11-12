@@ -83,3 +83,24 @@ plt.figure()
 plt.pie(df["Relatives"].value_counts(), autopct = "%1.1f%%")
 plt.legend(["0","1","2","3","4","5","6","7"])
 plt.show()
+
+# calcul de moyenne dans des regroupements
+df.groupby(["Sex"]).mean()
+df.groupby(["Sex"]).median()
+df.groupby(["Sex", "Pclass"]).mean()
+
+# on observe la répartition hommes/femmes/enfants parmi les morts/survivants
+plt.figure()
+plt.hist([df_men["Survived"], df_women["Survived"], df_children["Survived"]], bins = 2)
+plt.xticks(ticks=[0,1], labels=["Morts", "Vivants"])
+plt.margins(x=0.1)
+plt.legend(["Hommes", "Femmes", "Enfants"])
+plt.show()
+
+# on observe la répartition 3ème/2ème/1ère classes parmi les morts/survivants
+plt.figure()
+plt.hist([df[df["Pclass"]==3]["Survived"], df[df["Pclass"]==2]["Survived"], df[df["Pclass"]==1]["Survived"]], bins = 2)
+plt.xticks(ticks=[0,1], labels=["Morts", "Vivants"])
+plt.margins(x=0.1)
+plt.legend(["3ème", "2ème", "1ère"])
+plt.show()
